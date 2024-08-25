@@ -1,7 +1,7 @@
 import random
 import sys
 
-float = if "-fl" in sys.argv
+float = "-fl" in sys.argv
 
 try:
     problems = input("How many problems do you want: ")
@@ -11,7 +11,7 @@ except ValueError:
     sys.exit(0)
 
 try:
-    for i in range(1, int(problems)):
+    for i in range(0, int(problems)):
         if float:
             l = random.uniform(10.2, 500.20)
             r = random.uniform(1.1, 9.9)
@@ -19,18 +19,19 @@ try:
             l = random.randint(1,500)
             r = random.randint(1,10)
 
-        # shadow pad
-        pad = "-"*pad
-
         q = l/r
-        print(f"\nProblem {i}: {l}Ã·{r}?")
+        print(f"\nProblem {i+1}: {l:.2f}Ã·{r:.2f}?")
         while True:
             a = input(">")
 
-            if float and a == f"{str(q):.2f}"::
-                break
-            if not float and int(a) == int(q):
-                break
+            try:
+                if float and round(a, 2) == round(q, 2):
+                    break
+                if not float and int(a) == int(q):
+                    break
+
+            except ValueError:
+                continue
 
 except KeyboardInterrupt:
     print("\nThanks for trying!")
